@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Aplicação de Limite de Cartão</title>
+</head>
+<body>
+    <div id="credit">by: Bruno Cradoso</div>
+    <h1>Aplicação de Limite de Cartão de Crédito</h1>
+
+    <div>
+        <label for="numeroCartao">Cartão:</label>
+        <input type="text" id="numeroCartao">
+    </div>
+
+    <div>
+        <label>Escolha o valor de limite:</label>
+        <button onclick="alterarLimite(4000)">C - R$4.000,00</button>
+        <button onclick="alterarLimite(12000)">A - R$12.000,00</button>
+        <button onclick="alterarLimite(18000)">B - R$18.000,00</button>
+        <button onclick="alterarLimite(20000)">C - R$20.000,00</button>
+    </div>
+
+    <div id="resultado" style="display: none;">
+        <p id="mensagemResultado"></p>
+        <button onclick="confirmarAumentoLimite()">Confirmar</button>
+    </div>
+
+    <script>
+        let novoLimite = 0;
+
+        function alterarLimite(valor) {
+            novoLimite = valor;
+            const resultado = document.getElementById("resultado");
+            resultado.style.display = "block";
+            const mensagemResultado = document.getElementById("mensagemResultado");
+            mensagemResultado.innerHTML = `O limite do cartão foi alterado para R$ ${novoLimite}. Clique em 'Confirmar' para concluir o processo.`;
+        }
+
+        function confirmarAumentoLimite() {
+            const numeroCartao = document.getElementById("numeroCartao").value;
+
+            if (numeroCartao) {
+                const resultado = document.getElementById("resultado");
+                const mensagemResultado = document.getElementById("mensagemResultado");
+                mensagemResultado.innerHTML = `O limite do cartão ${numeroCartao} foi alterado para R$ ${novoLimite}. Aguarde de 5-7 dias úteis para processamento.`;
+            } else {
+                alert("Por favor, preencha o campo do número do cartão.");
+            }
+        }
+    </script>
+</body>
+</html>
+
